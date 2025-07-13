@@ -1,8 +1,9 @@
 import sys
 from datetime import datetime
-from colorama import init, Style
+from colorama import init, Style, Fore
 from revoltlogger.levels import LogLevel
 from revoltlogger.themes import COLOR_THEME
+
 init(autoreset=True)
 
 class Logger:
@@ -56,3 +57,14 @@ class Logger:
 
     def stdinlog(self, message: str):
         print(message)
+
+    def output(self, message: str,color: str = COLOR_THEME.get('INFO', Fore.BLUE),level_name: str = "INFO"):
+        if self.colored:
+            brackets = f"{Style.BRIGHT}{Fore.WHITE}[{Style.RESET_ALL}"
+            level_colored = f"{Style.BRIGHT}{color}{level_name.upper()}{Style.RESET_ALL}"
+            close_brackets = f"{Style.BRIGHT}{Fore.WHITE}]{Style.RESET_ALL}"
+            prefix = f"{brackets}{level_colored}{close_brackets}"
+            message_formatted = f"{Style.BRIGHT}{Fore.WHITE}:{Style.RESET_ALL} {COLOR_THEME['MESSAGE']}{message}{Style.RESET_ALL}"
+            print(f"{prefix}{message_formatted}")
+        else:
+            print(f"[{level_name.upper()}]: {message}")
