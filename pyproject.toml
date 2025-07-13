@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "revoltlogger"
-version = "1.0.0"
+version = "1.0.1"
 description = "RevoltLogger - A simple and colorful logging library for Python tools, CLI applications, and security automation."
 readme = "README.md"
 requires-python = ">=3.7"
